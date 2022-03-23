@@ -1,5 +1,12 @@
 #! /bin/sh
-# Script starts the GMod server according to set environment variables
-$START_CMD
+if [ -n "$WORKSHOP_COLLECTION" ]
+then
+    ARGS="+host_workshop_collection $WORKSHOP_COLLECTION $ARGS"
+fi
 
-exit 1;
+# Assemble arguments
+ARGS="-game garrysmod -console -norestart -port ${PORT} -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} ${ARGS}"
+
+$START_CMD $ARGS
+
+exit 0;

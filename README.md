@@ -1,5 +1,6 @@
 # GMod-Docker
-GMod dedicated server in a Debian based Docker container.
+GMod dedicated server in a Debian based Docker container.\
+Includes css content.
 
 ## File structure
 The file structure within the container is as follows:
@@ -7,16 +8,13 @@ The file structure within the container is as follows:
 📁home/
 ├─ 📁steam/
 │  ├─ 📜steamcmd.sh
+📁mount/
+├─ Mount files here (css)
 📁server/
-├─ server files here
+├─ Server files here
 📁scripts/
-├─ 📜entrypoint.sh
-├─ 📜fix_permissions.sh
-├─ 📜install.sh
-├─ 📜start.sh
+├─ Scripts here
 ```
-
-If you wish to preserve the installed server between runs, you should create a volume or a bind mount for the `/server` directory.
 
 ## Environment variables
 Provides the following environment variables for configuration:
@@ -37,6 +35,7 @@ Provides the following environment variables for configuration:
 docker run \
     -p 27015:27015 \
     -v gmod:/server \
+    -v gmod-mount:/mount \
     ghcr.io/randomman552/gmod
 ```
 ### Docker Compose
@@ -49,4 +48,5 @@ services:
             - 27015:27015
         volumes:
             - ./server:/server
+            - ./mount:/mount
 ```

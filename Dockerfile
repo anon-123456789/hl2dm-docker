@@ -11,4 +11,5 @@ LABEL org.opencontainers.image.title 'GMod docker container'
 
 # Copy scripts into container
 ADD scripts/* /scripts/
+ADD splash.txt /
 RUN chmod -R +x /scripts/*.sh

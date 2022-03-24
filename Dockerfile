@@ -9,7 +9,13 @@ LABEL org.opencontainers.image.url 'https://github.com/randomman552/GMod-Docker'
 LABEL org.opencontainers.image.documentation 'https://github.com/randomman552/GMod-Docker/blob/main/README.MD'
 LABEL org.opencontainers.image.title 'GMod docker container'
 
+# Add mount folder to store other servers to mount to this one
+RUN mkdir /mount
+RUN chown steam:steam /mount
+VOLUME [ "/mount" ]
+
 # Copy scripts into container
 ADD scripts/* /scripts/
 ADD splash.txt /
+ADD mount.cfg /
 RUN chmod -R +x /scripts/*.sh

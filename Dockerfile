@@ -4,11 +4,6 @@ ENV PORT=27015 MAX_PLAYERS=32 GAME_MODE=sandbox MAP=gm_constuct WORKSHOP_COLLECT
 
 EXPOSE ${PORT}
 
-LABEL org.opencontainers.image.source 'https://github.com/randomman552/GMod-Docker'
-LABEL org.opencontainers.image.url 'https://github.com/randomman552/GMod-Docker'
-LABEL org.opencontainers.image.documentation 'https://github.com/randomman552/GMod-Docker/blob/main/README.MD'
-LABEL org.opencontainers.image.title 'GMod docker container'
-
 # Add mount folder to store other servers to mount to this one
 RUN mkdir /mount
 RUN chown steam:steam /mount

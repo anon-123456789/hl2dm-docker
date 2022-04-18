@@ -9,7 +9,7 @@ The file structure within the container is as follows:
 ├─ 📁steam/
 │  ├─ 📜steamcmd.sh
 📁mount/
-├─ Mount files here (css)
+├─ 📁css
 📁server/
 ├─ Server files here
 📁scripts/

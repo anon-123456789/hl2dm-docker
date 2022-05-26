@@ -5,7 +5,7 @@ then
 fi
 
 # Assemble arguments
-ARGS="-game garrysmod -console -norestart -port ${PORT} -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} ${ARGS}"
+ARGS="-strictportbind -port ${PORT} -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} ${ARGS}"
 
 $START_CMD $ARGS
 

@@ -1,21 +1,34 @@
 FROM ghcr.io/randomman552/steamcmd
-ENV APP_ID=4020 START_CMD=/server/srcds_run
-ENV PORT=27015 MAX_PLAYERS=32 GAME_MODE=sandbox MAP=gm_constuct WORKSHOP_COLLECTION= ARGS=
-
+ENV APP_ID=4020 \
+    START_CMD=/server/srcds_run \
+    PORT=27015 \
+    MAX_PLAYERS=32 \
+    GAME_MODE=sandbox \
+    MAP=gm_constuct \
+    WORKSHOP_COLLECTION= \
+    ARGS=
 EXPOSE ${PORT}
 
-# Add mount folder to store other servers to mount to this one
-RUN mkdir /mount
-RUN chown steam:steam /mount
-VOLUME [ "/mount" ]
 
-# Setup healthcheck
-ADD healthcheck.sh /
-RUN chmod -R +x /healthcheck.sh && apt-get install --no-install-recommends net-tools
-HEALTHCHECK CMD [ "/healthcheck.sh" ]
-
-# Copy scripts into container
+# Add files
 ADD scripts/* /scripts/
-ADD splash.txt mount.cfg /
-ADD mount.cfg /
-RUN chmod -R +x /scripts/*.sh
+ADD health.sh splash.txt mount.cfg /
+
+
+RUN \
+    # Install healthcheck dependencies
+    apt-get update \
+    && apt upgrade -y \
+    && apt-get install -y --no-install-recommends --no-install-suggests \
+        net-tools \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/* \
+    # Make scripts executable
+    && chmod -R +x /scripts/*.sh /*.sh \
+    # Create mount directory
+    && mkdir /mount \
+    && chown steam:steam /mount
+
+
+HEALTHCHECK CMD [ "/health.sh" ]
+VOLUME [ "/mount" ]

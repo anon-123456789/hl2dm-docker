@@ -9,8 +9,13 @@ RUN mkdir /mount
 RUN chown steam:steam /mount
 VOLUME [ "/mount" ]
 
+# Setup healthcheck
+ADD healthcheck.sh /
+RUN chmod -R +x /healthcheck.sh && apt-get install --no-install-recommends net-tools
+HEALTHCHECK CMD [ "/healthcheck.sh" ]
+
 # Copy scripts into container
 ADD scripts/* /scripts/
-ADD splash.txt /
+ADD splash.txt mount.cfg /
 ADD mount.cfg /
 RUN chmod -R +x /scripts/*.sh

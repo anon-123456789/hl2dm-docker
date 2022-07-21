@@ -12,7 +12,7 @@ EXPOSE ${PORT}
 
 # Add files
 ADD scripts/* /scripts/
-ADD splash.txt mount.cfg /
+ADD perms.sh splash.txt mount.cfg /
 
 
 RUN \

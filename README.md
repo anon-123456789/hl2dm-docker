@@ -22,6 +22,7 @@ Provides the following environment variables for configuration:
 |:-------------------:|:-------------:|:------------------------------------------------------------:|
 | PUID                | 1000          | ID of user SteamCMD and the server will be run as            |
 | PGID                | 1000          | ID of group SteamCMD and the server will be run as           |
+| VALIDATE            | true          | Whether to validate on game install                          |
 | MAX_PLAYERS         | 32            | Max players to allow                                         |
 | GAME_MODE           | sandbox       | Game mode to host                                            |
 | MAP                 | gm_construct  | Map to host                                                  |

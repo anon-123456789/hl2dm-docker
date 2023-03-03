@@ -1,26 +1,34 @@
-FROM ghcr.io/randomman552/steamcmd
-ENV APP_ID=4020 \
-    START_CMD=/server/srcds_run \
-    PORT=27015 \
-    MAX_PLAYERS=32 \
-    GAME_MODE=sandbox \
-    MAP=gm_constuct \
-    WORKSHOP_COLLECTION= \
-    ARGS=
-EXPOSE ${PORT}
+FROM steamcmd/steamcmd:ubuntu-22
+ENV PUID 1000
+ENV PGID 1000
+ENV MAX_PLAYERS 32
+ENV GAME_MODE sandbox
+ENV MAP gm_construct
+ENV WORKSHOP_COLLECTION=
+ENV ARGS=
 
+EXPOSE 27015
+WORKDIR /server
+
+# Add normal user to run server under
+RUN useradd -m gmod
+RUN chmod 777 -R /root
+
+# Install CSS content
+RUN mkdir /mount && chown gmod:gmod /mount
+USER gmod
+RUN steamcmd +force_install_dir /mount/css +login anonymous +app_update 232330 +quit
+USER root
+
+# Install dependencies
+RUN apt update && \
+    apt install sudo && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add files
-ADD scripts/* /scripts/
-ADD perms.sh splash.txt mount.cfg /
+ADD entrypoint.sh splash.txt mount.cfg /
+RUN chmod -R +x /entrypoint.sh
 
-
-RUN \
-    # +x to scripts
-        chmod -R +x /scripts/*.sh /*.sh \
-    # Create mount directory
-        && mkdir /mount \
-        && chown steam:steam /mount
-
-
-VOLUME [ "/mount" ]
+VOLUME [ "/server" ]
+ENTRYPOINT [ "/entrypoint.sh" ]

@@ -8,7 +8,7 @@ ENV MAP gm_construct
 ENV WORKSHOP_COLLECTION=
 ENV ARGS=
 
-EXPOSE 27015
+EXPOSE 27015 27015/udp
 WORKDIR /server
 
 # Add normal user to run server under

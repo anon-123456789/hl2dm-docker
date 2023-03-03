@@ -1,6 +1,7 @@
 FROM steamcmd/steamcmd:ubuntu-22
 ENV PUID 1000
 ENV PGID 1000
+ENV HOME /home/gmod
 ENV MAX_PLAYERS 32
 ENV GAME_MODE sandbox
 ENV MAP gm_construct
@@ -12,7 +13,6 @@ WORKDIR /server
 
 # Add normal user to run server under
 RUN useradd -m gmod
-RUN chmod 777 -R /root
 
 # Install CSS content
 RUN mkdir /mount && chown gmod:gmod /mount

@@ -22,7 +22,7 @@ USER root
 
 # Install dependencies
 RUN apt update && \
-    apt install sudo && \
+    apt install sudo iproute2 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 

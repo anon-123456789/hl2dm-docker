@@ -1,19 +1,17 @@
 # GMod-Docker
-GMod dedicated server in a Debian based Docker container.\
-Includes css content.
+GMod dedicated server in an Ubuntu 22 Docker container.\
+Includes css content and auto update's on restart
+
+Based on the [steamcmd](https://github.com/steamcmd/docker) Docker image
 
 ## File structure
 The file structure within the container is as follows:
 ```
-📁home/
-├─ 📁steam/
-│  ├─ 📜steamcmd.sh
 📁mount/
 ├─ 📁css
+|  ├─ CSS content
 📁server/
 ├─ Server files here
-📁scripts/
-├─ Scripts here
 ```
 
 ## Environment variables
@@ -22,7 +20,6 @@ Provides the following environment variables for configuration:
 |:-------------------:|:-------------:|:------------------------------------------------------------:|
 | PUID                | 1000          | ID of user SteamCMD and the server will be run as            |
 | PGID                | 1000          | ID of group SteamCMD and the server will be run as           |
-| VALIDATE            | true          | Whether to validate on game install                          |
 | MAX_PLAYERS         | 32            | Max players to allow                                         |
 | GAME_MODE           | sandbox       | Game mode to host                                            |
 | MAP                 | gm_construct  | Map to host                                                  |
@@ -35,19 +32,20 @@ Provides the following environment variables for configuration:
 ```sh
 docker run \
     -p 27015:27015 \
+    -p 27015:27015/udp \
     -v gmod:/server \
-    -v gmod-mount:/mount \
-    ghcr.io/randomman552/gmod
+    gitlab.ggrainger.uk/ggrainger/gmod-docker
 ```
+
 ### Docker Compose
 ```yml
-version: "3.8"
+version: "3"
 services:
     steamcmd:
-        image: ghcr.io/randomman552/gmod
+        image: gitlab.ggrainger.uk/ggrainger/gmod-docker
         ports:
             - 27015:27015
+            - 27015:27015/udp
         volumes:
             - ./server:/server
-            - ./mount:/mount
 ```

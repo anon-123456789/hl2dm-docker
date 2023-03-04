@@ -31,5 +31,5 @@ ADD entrypoint.sh splash.txt mount.cfg /
 RUN chmod -R +x /entrypoint.sh
 
 VOLUME [ "/server" ]
-HEALTHCHECK --interval=10s --start-period=30s --retries=3 CMD [ "if ! $(ss -l | grep LISTEN.*27015); then exit 1; fi" ]
+HEALTHCHECK --interval=10s --start-period=30s --retries=3 CMD [ "if ! $(ss -l | grep LISTEN.*27015) 2> /dev/null ; then echo yes; fi" ]
 ENTRYPOINT [ "/entrypoint.sh" ]

@@ -36,7 +36,7 @@ docker run \
     -p 27015:27015 \
     -p 27015:27015/udp \
     -v gmod:/server \
-    gitlab.ggrainger.uk/ggrainger/gmod-docker
+    randomman552/gmod
 ```
 
 ### Docker Compose
@@ -44,7 +44,7 @@ docker run \
 version: "3"
 services:
     steamcmd:
-        image: gitlab.ggrainger.uk/ggrainger/gmod-docker
+        image: randomman552/gmod
         ports:
             - 27015:27015
             - 27015:27015/udp

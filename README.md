@@ -1,4 +1,5 @@
 # GMod-Docker
+[![Build Status](https://drone.ggrainger.uk/api/badges/ggrainger/GMod/status.svg)](https://drone.ggrainger.uk/ggrainger/GMod)
 GMod dedicated server in an Ubuntu 22 Docker container.\
 Includes css content and auto update's on restart
 

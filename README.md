@@ -20,14 +20,15 @@ The file structure within the container is as follows:
 
 ## Environment variables
 Provides the following environment variables for configuration:
-| Variable            | Default value | Description                                                  |
-|:-------------------:|:-------------:|:------------------------------------------------------------:|
-| MAX_PLAYERS         | 32            | Max players to allow                                         |
-| GAME_MODE           | sandbox       | Game mode to host                                            |
-| MAP                 | gm_construct  | Map to host                                                  |
-| PORT                | 27015         | Port to host one                                             |
-| WORKSHOP_COLLECTION |               | Workshop collection to host, should be an ID like 2036327578 |
-| ARGS                |               | Any further arguments to pass                                |
+| Variable             | Default value | Description                                                                                                   |
+|:--------------------:|:-------------:|:-------------------------------------------------------------------------------------------------------------:|
+| REPLACE_MOUNT_CONFIG | true          | Controls whether the `mount.cfg` file is replaced automatically on startup, set to any other value to disable |
+| MAX_PLAYERS          | 32            | Max players to allow                                                                                          |
+| GAME_MODE            | sandbox       | Game mode to host                                                                                             |
+| MAP                  | gm_construct  | Map to host                                                                                                   |
+| PORT                 | 27015         | Port to host one                                                                                              |
+| WORKSHOP_COLLECTION  |               | Workshop collection to host, should be an ID like 2036327578                                                  |
+| ARGS                 |               | Any further arguments to pass                                                                                 |
 
 ## Running
 ### Docker CLI

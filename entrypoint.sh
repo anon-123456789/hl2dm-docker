@@ -12,9 +12,11 @@ steamcmd +force_install_dir /server/ +login anonymous +app_update 4020 +quit
 echo "Done!"
 
 # Replace mount.cfg
-echo "Replacing GMod mount.cfg..."
-cp /mount.cfg /server/garrysmod/cfg/mount.cfg
-echo "Done!"
+if [ "$REPLACE_MOUNT_CONFIG" = "true" ]; then
+    echo "Replacing GMod mount.cfg..."
+    cp /mount.cfg /server/garrysmod/cfg/mount.cfg
+    echo "Done!"
+fi
 
 # Assemble arguments
 if [ -n "$WORKSHOP_COLLECTION" ]

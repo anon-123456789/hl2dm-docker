@@ -1,5 +1,6 @@
 FROM steamcmd/steamcmd:ubuntu-22
 ENV HOME /home/gmod
+ENV REPLACE_MOUNT_CONFIG true
 ENV MAX_PLAYERS 32
 ENV GAME_MODE sandbox
 ENV MAP gm_construct

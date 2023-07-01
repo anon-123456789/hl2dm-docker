@@ -1,16 +1,20 @@
 #! /bin/bash
 cat /splash.txt
 
+# Install/update CSS
+echo "Installing CSS Server..."
+steamcmd +force_install_dir /mount/css +login anonymous +app_update 232330 +quit
+echo "Done!"
+
 # Install/update GMod
-sudo -u gmod steamcmd +force_install_dir /server/ +login anonymous +app_update 4020 +quit
+echo "Installing GMod Server..."
+steamcmd +force_install_dir /server/ +login anonymous +app_update 4020 +quit
+echo "Done!"
 
 # Replace mount.cfg
+echo "Replacing GMod mount.cfg..."
 cp /mount.cfg /server/garrysmod/cfg/mount.cfg
-
-# Setup permissions
-usermod -u ${PUID} gmod
-groupmod -g ${PGID} gmod
-chown -R gmod:gmod /server /mount
+echo "Done!"
 
 # Assemble arguments
 if [ -n "$WORKSHOP_COLLECTION" ]
@@ -20,5 +24,7 @@ fi
 
 ARGS="-strictportbind -port 27015 -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} ${ARGS}"
 
-# Shed permissions down to a regular user and start the server
-sudo -u gmod /server/srcds_run $ARGS
+# Start the server
+echo "Starting server..."
+/server/srcds_run $ARGS
+echo "Finished!"

@@ -27,8 +27,8 @@ COPY --chmod=755 --chown=gmod:gmod entrypoint.sh splash.txt mount.cfg /
 
 # Allow anyone to read/write to /home/gmod/.steam so any user can run the server
 RUN mkdir ${HOME}/.steam \
-    && chown gmod:gmod ${HOME}/.steam \
-    && chmod 777 ${HOME}/.steam
+    && chown -r gmod:gmod ${HOME}/.steam \
+    && chmod -r 777 ${HOME}
 
 USER gmod
 

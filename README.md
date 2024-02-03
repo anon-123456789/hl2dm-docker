@@ -26,7 +26,6 @@ Provides the following environment variables for configuration:
 | MAX_PLAYERS          | 32            | Max players to allow                                                                                          |
 | GAME_MODE            | sandbox       | Game mode to host                                                                                             |
 | MAP                  | gm_construct  | Map to host                                                                                                   |
-| PORT                 | 27015         | Port to host one                                                                                              |
 | WORKSHOP_COLLECTION  |               | Workshop collection to host, should be an ID like 2036327578                                                  |
 | ARGS                 |               | Any further arguments to pass                                                                                 |
 

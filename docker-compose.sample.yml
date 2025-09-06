@@ -1,5 +1,5 @@
 services:
-  gmod:
+  hl2dm:
     user: 0:0
     image: ghcr.io/anon-123456789/hl2dm-docker:latest
     environment:

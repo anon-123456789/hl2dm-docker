@@ -97,3 +97,15 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+  clean:
+    runs-on: ubuntu-latest
+    name: Delete old images
+    steps:
+      - uses: snok/container-retention-policy@v3.0.0
+        with:
+          account: user
+          token: ${{ secrets.PAT }}
+          image-names: ${{ github.event.repository.name }}
+          image-tags: "!latest"  # target any image that has a tag starting with the word test or dev
+          cut-off: 2w
+          dry-run: false

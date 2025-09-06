@@ -33,7 +33,7 @@ RUN mkdir ${HOME}/.steam \
     && chown -R gmod:gmod ${HOME}/.steam \
     && chmod -R 777 ${HOME}
 
-RUN ln -s ${HOME}/.steam /root/.steam
+RUN ln -s /root/.steam ${HOME}/.steam
 
 USER gmod
 

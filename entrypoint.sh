@@ -39,7 +39,7 @@ then
     ARGS="+sv_setsteamaccount $LOGIN_TOKEN $ARGS"
 fi
 
-ARGS="-strictportbind -port 27015 -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} +sv_lan 0 ${ARGS}"
+ARGS="-strictportbind -port ${PORT:=27015} -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} +sv_lan 0 ${ARGS}"
 
 # Start the server
 echo "Starting server..."

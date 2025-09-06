@@ -24,6 +24,7 @@ Provides the following environment variables for configuration:
 | Variable | Default value | Description |
 |:-----:|:-----:|-----:|
 | REPLACE_MOUNT_CONFIG | true | Controls whether the `mount.cfg` file is replaced automatically on startup, set to any other value to disable |
+| PORT | 27015 | Server port |
 | MAX_PLAYERS | 32 | Max players to allow |
 | GAME_MODE | sandbox | Game mode to host |
 | MAP | gm_construct | Map to host |

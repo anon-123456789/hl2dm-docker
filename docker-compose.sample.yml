@@ -1,7 +1,7 @@
 services:
   gmod:
     user: 1000:1000
-    image: ghcr.io/anon-123456789/GMod-Docker:latest
+    image: ghcr.io/anon-123456789/gmod-docker:latest
     environment:
       - REPLACE_MOUNT_CONFIG=true
       - MAX_PLAYERS=6

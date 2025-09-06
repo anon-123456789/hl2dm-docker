@@ -18,9 +18,5 @@ RUN mkdir /mount
 # Add files
 COPY --chmod=755 entrypoint.sh splash.txt mount.cfg /
 
-# Allow anyone to read/write to /home/gmod/.steam so any user can run the server
-RUN mkdir ${HOME}/.steam \
-    && chmod -R 777 ${HOME}
-
 VOLUME [ "/server", "/mount" ]
 ENTRYPOINT [ "/entrypoint.sh" ]

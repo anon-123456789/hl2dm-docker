@@ -1,10 +1,13 @@
-FROM steamcmd/steamcmd:ubuntu-22
+FROM docker.io/steamcmd/steamcmd:latest
 ENV HOME /home/gmod
 ENV REPLACE_MOUNT_CONFIG true
 ENV MAX_PLAYERS 32
 ENV GAME_MODE sandbox
 ENV MAP gm_construct
 ENV WORKSHOP_COLLECTION=
+ENV LOCATION=
+ENV PASSWORD=
+ENV LOGIN_TOKEN=
 ENV ARGS=
 
 EXPOSE 27015 27015/udp

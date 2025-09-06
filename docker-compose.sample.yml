@@ -1,0 +1,20 @@
+services:
+  gmod:
+    user: 1000:1000
+    image: ghcr.io/anon-123456789/GMod-Docker:latest
+    environment:
+      - REPLACE_MOUNT_CONFIG=true
+      - MAX_PLAYERS=6
+      - GAME_MODE=sandbox
+      - MAP=gm_flatgrass
+      - WORKSHOP_COLLECTION=replace_this
+      - LOCATION=us
+      - PASSWORD=replace_this
+      - LOGIN_TOKEN=replace_this
+      - ARGS=""
+    ports:
+      - 27015:27015
+      - 27015:27015/udp
+    volumes:
+      - ./server:/server
+      - ./mount:/mount

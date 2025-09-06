@@ -33,6 +33,8 @@ RUN mkdir ${HOME}/.steam \
     && chown -R gmod:gmod ${HOME}/.steam \
     && chmod -R 777 ${HOME}
 
+RUN ln -s ${HOME}/.steam /root/.steam
+
 USER gmod
 
 VOLUME [ "/server", "/mount" ]

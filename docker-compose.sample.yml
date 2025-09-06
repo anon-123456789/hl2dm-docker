@@ -4,6 +4,7 @@ services:
     image: ghcr.io/anon-123456789/gmod-docker:latest
     environment:
       - REPLACE_MOUNT_CONFIG=true
+      - PORT=27015
       - MAX_PLAYERS=6
       - GAME_MODE=sandbox
       - MAP=gm_flatgrass

@@ -12,29 +12,15 @@ ENV ARGS=
 
 WORKDIR /server
 
-# Add normal user to run server under
-RUN useradd -m gmod
-
-# Install dependencies
-RUN apt update && \
-    apt install --no-install-recommends --no-install-suggests -y sudo iproute2 && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # Create directories
-RUN mkdir /mount && \
-    chown gmod:gmod /mount /server
+RUN mkdir /mount
 
 # Add files
-COPY --chmod=755 --chown=gmod:gmod entrypoint.sh splash.txt mount.cfg /
+COPY --chmod=755 entrypoint.sh splash.txt mount.cfg /
 
 # Allow anyone to read/write to /home/gmod/.steam so any user can run the server
 RUN mkdir ${HOME}/.steam \
-    && chown -R gmod:gmod ${HOME}/.steam \
     && chmod -R 777 ${HOME}
 
-USER gmod
-
 VOLUME [ "/server", "/mount" ]
-HEALTHCHECK --interval=10s --start-period=30s --retries=3 CMD if [ $(ss -l | grep -c LISTEN.*27015) == "0" ] ; then exit 1; fi
 ENTRYPOINT [ "/entrypoint.sh" ]

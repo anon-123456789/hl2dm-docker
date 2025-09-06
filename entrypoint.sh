@@ -10,9 +10,6 @@ echo "Installing GMod Server..."
 steamcmd +force_install_dir /server/ +login anonymous +app_update 4020 -beta x86-64 validate +quit
 echo "Done!"
 
-echo "Adding root symlink..."
-ln -sf /root/.steam/ /home/gmod/.steam/
-
 # Replace mount.cfg
 if [ "$REPLACE_MOUNT_CONFIG" = "true" ]; then
     echo "Replacing GMod mount.cfg..."

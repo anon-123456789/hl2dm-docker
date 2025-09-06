@@ -1,6 +1,8 @@
 # GMod-Docker
 
 ### Forked from https://github.com/randomman552/GMod-Docker for my own use.
+> [!IMPORTANT]
+> This server runs as root by default because I use Docker in rootless mode. If you are using the default rootful mode, this may pose a security risk to your system.
 
 GMod (64-bit) dedicated server in a Docker container.\
 Includes Counter-Strike: Source content and auto updates on restart

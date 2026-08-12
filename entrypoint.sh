@@ -52,6 +52,6 @@ trap "stop" SIGTERM
 # Start the server
 echo "Starting server..."
 /server/srcds_run_x64 $ARGS &
-SRCDS_RUN_PID=$?
-wait $!
+SRCDS_RUN_PID=$!
+wait $SRCDS_RUN_PID
 echo "Finished!"

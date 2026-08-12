@@ -1,21 +1,9 @@
 #!/bin/bash
 
 stop() {
-    echo "SIGTERM requested, looking for \"/tmp/server.pid\"..."
-    if [ -e "/tmp/server.pid" ]; then
-        echo "\"/tmp/server.pid\" exists, going to shutdown the server cleanly..."
-        SERVER_PID=$(< "/tmp/server.pid")
-        echo "Sending SIGINT to PID $SERVER_PID..."
-        kill -2 $(< "/tmp/server.pid")
-    else 
-        echo "\"/tmp/server.pid\" doesn't exist, going to exit with code 1"
-        exit 1
-    fi
+    echo "SIGTERM requested, Sending SIGINT to PID $SRCDS_RUN_PID..."
+    kill -2 $SRCDS_RUN_PID
 }
-
-# Delete the PID file on startup
-echo "Removing PID file \"/tmp/server.pid\"..."
-rm -fv /tmp/server.pid
 
 # Install/update CSS
 echo "Installing CSS Server..."
@@ -55,7 +43,7 @@ then
     ARGS="+sv_setsteamaccount $LOGIN_TOKEN $ARGS"
 fi
 
-ARGS="-pidfile /tmp/server.pid -strictportbind -port ${PORT:=27015} -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} +sv_lan 0 ${ARGS}"
+ARGS="-strictportbind -port ${PORT:=27015} -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} +sv_lan 0 ${ARGS}"
 
 # Docker sends us a SIGTERM when the container stops, so trap it to actually shutdown the server cleanly
 echo "Trapping SIGTERM..."
@@ -64,5 +52,6 @@ trap "stop" SIGTERM
 # Start the server
 echo "Starting server..."
 /server/srcds_run_x64 $ARGS &
+SRCDS_RUN_PID=$?
 wait $!
 echo "Finished!"

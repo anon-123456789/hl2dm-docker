@@ -1,5 +1,10 @@
 #!/bin/bash
 
+stop() {
+    echo "SIGTERM requested, Sending SIGINT to PID $SRCDS_RUN_PID..."
+    kill -2 $SRCDS_RUN_PID
+}
+
 # Install/update CSS
 echo "Installing CSS Server..."
 steamcmd +force_install_dir /mount/css +login anonymous +app_update 232330 -validate +quit
@@ -40,7 +45,13 @@ fi
 
 ARGS="-strictportbind -port ${PORT:=27015} -game garrysmod -maxplayers ${MAX_PLAYERS} +gamemode ${GAME_MODE} +map ${MAP} +sv_lan 0 ${ARGS}"
 
+# Docker sends us a SIGTERM when the container stops, so trap it to actually shutdown the server cleanly
+echo "Trapping SIGTERM..."
+trap "stop" SIGTERM
+
 # Start the server
 echo "Starting server..."
-/server/srcds_run_x64 $ARGS
+/server/srcds_run_x64 $ARGS &
+SRCDS_RUN_PID=$!
+wait $SRCDS_RUN_PID
 echo "Finished!"

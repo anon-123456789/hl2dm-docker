@@ -63,5 +63,6 @@ trap "stop" SIGTERM
 
 # Start the server
 echo "Starting server..."
-/server/srcds_run_x64 $ARGS
+/server/srcds_run_x64 $ARGS &
+wait $!
 echo "Finished!"
